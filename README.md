@@ -6,6 +6,8 @@
 
 # MySQL
 
+`Server version: 8.0.23 MySQL Community Server - GPL`
+
 ```mysql
 #待补充
 ```
