@@ -7,7 +7,7 @@
 # MySQL
 
 `Server version: 8.0.23 MySQL Community Server - GPL`
-test
+
 ```mysql
 #待补充
 ```
