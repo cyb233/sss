@@ -3,6 +3,7 @@
 
 logs/
 target/
+test/
 
 # User-specific stuff
 .idea/**/workspace.xml
