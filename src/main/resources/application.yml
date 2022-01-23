@@ -7,9 +7,9 @@ server:
 #mysql 连接
 spring:
   datasource:
-    password: 511002zzl
-    username: root
-    url: jdbc:mysql://119.23.173.153/shop?useSSL=false&serverTimezone=GMT%2B8
+    password: abc123
+    username: skp
+    url: jdbc:mysql:///shop?useSSL=false&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
 #springdatajpa
