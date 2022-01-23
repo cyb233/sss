@@ -2,3 +2,42 @@ server:
   port: 8080
   servlet:
     context-path: /
+
+
+#mysql 连接
+spring:
+  datasource:
+    password: 511002zzl
+    username: root
+    url: jdbc:mysql://119.23.173.153/shop?useSSL=false&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+#springdatajpa
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties: org.hibernate.dialect.MySQL8Dialect
+
+#logs
+logging:
+  level: error
+  file:
+    name: logs/error
+  pattern:
+    file: '%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n'
+    console: '%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n'
+
+
+#jwt
+com:
+  sy:
+    jwt:
+      secretKsy: '223oiimk'
+      refreshTokenExpireTime: 'Pt10H'
+      accessTokenExpireTime: 'Pt4H'
+      refreshTokenExpireAppTime: 'P300'
+      issuer: 'com.sy'
