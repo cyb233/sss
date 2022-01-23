@@ -45,6 +45,15 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--支付宝SDK
+        https://opendocs.alipay.com/common/02kkv7
+        https://opendocs.alipay.com/common/02kg69
+        -->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-easysdk</artifactId>
+            <version>2.2.0</version>
+        </dependency>
     </dependencies>
 
     <build>
