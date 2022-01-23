@@ -7,12 +7,12 @@ server:
 #mysql 连接
 spring:
   datasource:
-    password: root
+    password: 511002zzl
     username: root
-    url: jdbc:mysql:///shop?useSSL=false&serverTimezone=GMT%2B8
+    url: jdbc:mysql://119.23.173.153:3306/shop?useSSL=false&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
-  #springdatajpa
+#springdatajpa
   jpa:
     database: mysql
     show-sql: true
