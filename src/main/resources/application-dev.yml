@@ -24,9 +24,10 @@ spring:
 
 #logs
 logging:
-  level: error
+  level:
+    root: error
   file:
-    name: logs/error
+    name: logs/error.log
   pattern:
     file: '%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n'
     console: '%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n'

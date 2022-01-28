@@ -12,7 +12,7 @@ spring:
     url: jdbc:mysql://119.23.173.153:3306/shop?useSSL=false&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
-#springdatajpa
+  #springdatajpa
   jpa:
     database: mysql
     show-sql: true
@@ -20,13 +20,16 @@ spring:
       ddl-auto: validate
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    properties: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
 
 #logs
 logging:
-  level: error
+  level:
+    root: error
   file:
-    name: logs/error
+    name: logs/error.log
   pattern:
     file: '%d{yyyy/MM/dd-HH:mm} [%thread] %-5level %logger- %msg%n'
     console: '%d{yyyy/MM/dd-HH:mm:ss} [%thread] %-5level %logger- %msg%n'
