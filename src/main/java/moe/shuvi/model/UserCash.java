@@ -10,6 +10,7 @@ import java.util.Date;
  * @author qianjianyu
  */
 @Entity(name = "USERCASH")
+@Table(name = "s_userCash")
 public class UserCash implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

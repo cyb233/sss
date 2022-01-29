@@ -1,4 +1,4 @@
-package moe.shuvi.conflg;
+package moe.shuvi.config;
 
 import moe.shuvi.interceptor.TokenInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;

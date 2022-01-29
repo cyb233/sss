@@ -11,6 +11,7 @@ import java.util.Date;
  * @date 2022/1/23 0023  17:00
  */
 @Entity(name = "USER")
+@Table(name = "s_user")
 public class User implements Serializable {
 
     @Id

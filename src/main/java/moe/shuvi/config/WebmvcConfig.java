@@ -1,6 +1,5 @@
-package moe.shuvi.conflg;
+package moe.shuvi.config;
 
-import moe.shuvi.utils.JwtConstant;
 import moe.shuvi.utils.JwtConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

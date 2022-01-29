@@ -43,4 +43,4 @@ com:
       refreshTokenExpireTime: 'Pt10H'
       accessTokenExpireTime: 'Pt4H'
       refreshTokenExpireAppTime: 'P300'
-      issuer: 'com.sy'
+      issuer: 'moe.shuvi'

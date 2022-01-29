@@ -21,7 +21,7 @@ import java.util.Map;
  * @Version 1.0
  */
 @Component
-@ConfigurationProperties(prefix = "com.sy.jwt")
+@ConfigurationProperties(prefix = "moe.shuvi.jwt")
 public class JwtTokenUtil {
 
     private String secretKey;
@@ -36,7 +36,7 @@ public class JwtTokenUtil {
         this.accessTokenExpireTime=Duration.parse("PT2H");//PT2H
         this.refreshTokenExpireTime=Duration.parse("PT8H");
         this.refreshTokenExpireAppTime=Duration.parse("P30D");
-        this.issuer="com.sy";
+        this.issuer="moe.shuvi";
     }
 
     /**

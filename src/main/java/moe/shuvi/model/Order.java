@@ -10,6 +10,7 @@ import java.util.Date;
  * @author qianjianyu
  */
 @Entity(name = "ORDER")
+@Table(name = "s_order")
 public class Order implements Serializable {
 
     @Id

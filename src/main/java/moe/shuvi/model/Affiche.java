@@ -1,9 +1,6 @@
 package moe.shuvi.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,6 +8,7 @@ import java.util.Date;
  * @author qianjianyu
  */
 @Entity(name = "AFFICHE")
+@Table(name = "s_affiche")
 public class Affiche implements Serializable {
 
     @Id
