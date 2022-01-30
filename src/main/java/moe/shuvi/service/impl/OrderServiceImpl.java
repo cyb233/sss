@@ -18,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
         List<Order> all = orderDao.findAll();
         Result result = new Result();
         result.setData(all);
+
         return result;
     }
 }
