@@ -26,6 +26,9 @@ public class TokenInterceptor implements HandlerInterceptor {
             System.out.println("OPTIONS请求，放行");
             return true;
         }
+        if (false){
+            return true;
+        }
         //1.获取token,先校验是否合法，再校验是否过期
         String token = request.getHeader("authorization");
         if (token == null) {

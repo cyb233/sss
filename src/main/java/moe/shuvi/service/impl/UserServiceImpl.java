@@ -21,7 +21,17 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User findByLogin(String loginCode) throws Exception {
+    public User findByLogin(User user) throws Exception {
+        Example<User> example = Example.of(user);
+        Optional<User> one = userDao.findOne(example);
+        if(one.isPresent()){
+            return one.get();
+        }
+        return null;
+    }
+
+    @Override
+    public User selectByLoginCode(String loginCode) throws Exception {
         User user = new User();
         user.setLoginCode(loginCode);
         Example<User> example = Example.of(user);

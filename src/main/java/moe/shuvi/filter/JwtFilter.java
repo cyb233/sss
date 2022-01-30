@@ -34,7 +34,6 @@ public class JwtFilter extends BasicAuthenticationFilter {
     private JwtTokenUtil jwtTokenUtil = new JwtTokenUtil();
 
 
-
     public JwtFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
     }
@@ -59,13 +58,12 @@ public class JwtFilter extends BasicAuthenticationFilter {
         } catch (Exception e) {
             e.printStackTrace();
             Result result = new Result();
-            result.setCode(0);
-            result.setMsg("please login !!");
+            result.setCode(Result.CODE_LOGIN_NEEDED);
+            result.setMsg(Result.MSG_LOGIN_NEEDED);
             ObjectMapper objectMapper = new ObjectMapper();
             String string = objectMapper.writeValueAsString(result);
             response.getWriter().write(string);
         }
-        return ;
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(String jwtToken, HttpServletResponse response) {
@@ -79,7 +77,7 @@ public class JwtFilter extends BasicAuthenticationFilter {
         //获取权限
         Claims claims = jwtTokenUtil.getClaimsFromToken(jwtToken);
         //Collection<Map> collection = (Collection) claims.get(JwtConstant.JWT_PERMISSIONS_KEY);
-        Collection<? extends GrantedAuthority> authorities =(Collection<? extends GrantedAuthority>) claims.get(JwtConstant.JWT_PERMISSIONS_KEY);
+        Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) claims.get(JwtConstant.JWT_PERMISSIONS_KEY);
         /*System.out.println(collection);
         if (!collection.isEmpty()) {
             for (Map<String,String> map : collection) {

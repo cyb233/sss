@@ -12,11 +12,12 @@ public class Result {
     public final static String MSG_ERROR = "error";
     public final static Integer CODE_SUCCESS = 20000;
     public final static Integer CODE_ERROR = 20001;
-    public final static Integer CODE_LOGIN_FAILED=30001;
-    public final static String MSG_LOGIN_FAILED="Authentication Failure";
+    public final static Integer CODE_LOGIN_FAILED = 30001;
+    public final static String MSG_LOGIN_FAILED = "Authentication Failure";
     public final static Integer CODE_403 = 30002;
-    public final static String MSG_403="Permission denied";
-
+    public final static String MSG_403 = "Permission denied";
+    public static final Integer CODE_LOGIN_NEEDED = 30003;
+    public final static String MSG_LOGIN_NEEDED = "please login !!";
 
 
     private Integer code;

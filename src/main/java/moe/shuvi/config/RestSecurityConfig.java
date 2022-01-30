@@ -58,13 +58,11 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 
         JdbcUserDetailsManager jdbcDao = new JdbcUserDetailsManager(dataSource);
         //按用户名查询UserDetails
-        jdbcDao.setUsersByUsernameQuery("SELECT username,PASSWORD,STATUS AS enabled FROM S_USER WHERE username=?");
+        jdbcDao.setUsersByUsernameQuery("SELECT username,PASSWORD,del AS enabled FROM s_user WHERE loginCode=?");
         //查询所有权限
-        jdbcDao.setAuthoritiesByUsernameQuery("SELECT u.username,p.action AS authority FROM S_USER u \n" +
-                "LEFT JOIN s_role AS r ON u.rid=r.id \n" +
-                "LEFT JOIN role_permission AS rp ON r.id=rp.rid\n" +
-                "LEFT JOIN permission AS p ON rp.pid=p.id    \n" +
-                "WHERE u.username = ?");
+        jdbcDao.setAuthoritiesByUsernameQuery("SELECT u.username,u.username AS authority FROM s_user u " +
+                "LEFT JOIN s_role AS r ON u.roleId=r.id " +
+                "WHERE u.loginCode = ?");
         //查询权限的开关
         jdbcDao.setEnableAuthorities(true);
 
@@ -89,8 +87,9 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin(form -> {
 
                     //前端登录时，向该/login提交表单
-                    form.loginPage("/tologin.do")
-                            .loginProcessingUrl("/login")
+                    form
+                            //.loginPage("/order/list")
+                            .loginProcessingUrl("/user/login")
                             //认证成功后，向前端响应json数据
                             .successHandler((req, resp, auth) -> {
                                 Result result = new Result();
@@ -104,7 +103,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
                                 Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
                                 String userId;
                                 try {
-                                    User user = userService.findByLogin(username);
+                                    User user = userService.selectByLoginCode(username);
                                     userId = user.getId().toString();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -124,7 +123,8 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
                                 result.setCode(Result.CODE_LOGIN_FAILED);
                                 result.setMsg(Result.MSG_LOGIN_FAILED);
                                 resp.getWriter().write(JSON.toJSONString(result));
-                            }).permitAll();
+                            })
+                            .permitAll();
 
                 })
                 //退出登录
