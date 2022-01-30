@@ -24,15 +24,7 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: deploy_app_jar #停掉进程
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }} #服务器ip地址
-        username: ${{ secrets.USERNAME }} #服务器ssh用户名
-        password: ${{ secrets.PASSWORD }} #服务器ssh密码
-        port: ${{ secrets.PORT }} # 服务器ssh端口（默认22）
-        script: |
-          nohup java -jar /usr/local/web/demo-0.0.1-SNAPSHOT.jar >/dev/null 2>log &
+
     - name: scp_upload_jar_file #上传文件到服务器
       uses: garygrossgarten/github-action-scp@release
       with:
