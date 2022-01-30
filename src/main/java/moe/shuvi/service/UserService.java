@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 public interface UserService {
 
-    User findByLogin(User user) throws Exception;
+    User findByLogin(String loginCode) throws Exception;
 
     Result findByName(User user, int pageNow, int pageSize);
 }
