@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @author qianjianyu
  */
-@Entity(name = "ROLE")
+@Entity
 @Table(name = "s_role")
 public class Role implements Serializable {
 

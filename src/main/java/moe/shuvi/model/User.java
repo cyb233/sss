@@ -10,7 +10,7 @@ import java.util.Date;
  * @author qianjianyu
  * @date 2022/1/23 0023  17:00
  */
-@Entity(name = "s_user")
+@Entity
 @Table(name = "s_user")
 public class User implements Serializable {
 

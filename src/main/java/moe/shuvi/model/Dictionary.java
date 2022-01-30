@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * @author qianjianyu
  */
-@Entity(name = "DICTIONARY")
+@Entity
 @Table(name = "d_dictionary")
 public class Dictionary implements Serializable {
 

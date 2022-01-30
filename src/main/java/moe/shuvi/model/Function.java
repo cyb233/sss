@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @author qianjianyu
  */
-@Entity(name = "FUNCTION")
+@Entity
 @Table(name = "s_function")
 public class Function implements Serializable {
 
