@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * @author qianjianyu
  */
-@Entity(name = "AFFICHE")
+@Entity
 @Table(name = "s_affiche")
 public class Affiche implements Serializable {
 

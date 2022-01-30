@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @author qianjianyu
  */
-@Entity(name = "ORDERLIST")
+@Entity
 @Table(name = "s_orderList")
 public class OrederList implements Serializable {
 

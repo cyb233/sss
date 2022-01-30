@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * @author qianjianyu
  */
-@Entity(name = "LEAVEMESSAGE")
+@Entity
 @Table(name = "s_leaveMessage")
 public class LeaveMessage implements Serializable {
 

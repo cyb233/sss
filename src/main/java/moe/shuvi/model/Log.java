@@ -14,7 +14,7 @@ import java.util.Date;
  * @Version 1.0
  */
 
-@Entity(name = "LOG")
+@Entity
 @Table(name = "log")
 public class Log implements Serializable {
 

@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * @author qianjianyu
  */
-@Entity(name = "GOODS")
+@Entity
 @Table(name = "s_goods")
 public class Goods implements Serializable {
     @Id
