@@ -10,5 +10,5 @@ public interface UserService {
 
     User findByLogin(String loginCode) throws Exception;
 
-    Result findByName(User user, int pageNow, int pageSize);
+    Result findByName(User user, int pageNow, int pageSize) throws Exception;
 }

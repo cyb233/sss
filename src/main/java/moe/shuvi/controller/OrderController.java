@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
     @Autowired
     private OrderService orderService;
+
     @RequestMapping("/list")
-    public Result findAll()  throws Exception{
+    public Result findAll() throws Exception {
         Result all = orderService.findAll();
         return all;
     }
