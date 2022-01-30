@@ -50,4 +50,4 @@ jobs:
         password: ${{ secrets.PASSWORD }} #服务器ssh密码
         port: ${{ secrets.PORT }} # 服务器ssh端口（默认22）
         script: |
-          nohup java -jar /usr/local/web/demo-0.0.1-SNAPSHOT.jar >/dev/null 2>log &
+          systemctl restart java-web
