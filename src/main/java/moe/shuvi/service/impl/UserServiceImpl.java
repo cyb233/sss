@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,10 +44,18 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    /**
+     * @author 小张
+     * @param user 搜索的参数
+     * @param pageNow 分页的当前页
+     * @param pageSize 分页的页数
+     * @return 返回Result
+     */
     @Override
-    public Result findByName(User user,int pageNow, int pageSize) {
+    public Result findByPage(User user,int pageNow, int pageSize) {
         Result result = new Result();
         PageRequest p = PageRequest.of(pageNow - 1, pageSize);
+        //复杂查询的分装类
         ExampleMatcher matcher = ExampleMatcher.matching()
                 // ExampleMatcher.GenericPropertyMatcher::contains  lambda表达式
                 //contains()  全部模糊匹配  startsWith()  前部精确后部模糊   endsWith()  后部精确前部模糊
@@ -63,6 +73,51 @@ public class UserServiceImpl implements UserService {
         }else {
             result.setMsg(Result.MSG_ERROR);
             result.setCode(Result.CODE_ERROR);
+        }
+        return result;
+    }
+
+    /**
+     *  添加和修改公用一个方法,区别是有id则修改,无id则添加
+     *  @author 小张
+     * @param user 添加或修改参数
+     * @return 成功与否
+     * @throws Exception
+     */
+    @Transactional
+    @Override
+    public Result addUser(User user) throws Exception {
+        Result result = new Result();
+        User save = userDao.save(user);
+        if(save != null){
+            result.setData(save);
+            result.setCode(Result.CODE_SUCCESS);
+            result.setMsg(Result.MSG_SUCCESS);
+        }else {
+            result.setMsg(Result.MSG_SUCCESS);
+            result.setCode(Result.CODE_ERROR);
+        }
+        return result;
+    }
+
+    /**
+     * @author 小张
+     * @param id 删除参数,逻辑删除
+     * @return 成功与否
+     * @throws Exception
+     */
+    @Transactional
+    @Override
+    public Result removeUserBYId(int id) throws Exception {
+        Result result = new Result();
+        if(id >= 0){
+            userDao.deleteById(id);
+            result.setData(id);
+            result.setCode(Result.CODE_SUCCESS);
+            result.setMsg(Result.MSG_SUCCESS);
+        }else {
+            result.setCode(Result.CODE_ERROR);
+            result.setMsg(Result.MSG_ERROR);
         }
         return result;
     }
