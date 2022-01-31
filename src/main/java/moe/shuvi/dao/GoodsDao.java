@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * @author qjy
  */
-public interface GoodsDao extends JpaRepository<Goods,Integer> {
+public interface GoodsDao extends JpaRepository<Goods,Integer> , JpaSpecificationExecutor<Goods> {
 }
