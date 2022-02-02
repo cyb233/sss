@@ -3,8 +3,8 @@ server:
   servlet:
     context-path: /
   ssl:
-    enabled: false
-
+    key-store: classpath:shuvi.moe.jks
+    key-store-password: wtmjsgllk
 
 #mysql 连接
 spring:
