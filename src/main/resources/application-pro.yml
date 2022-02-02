@@ -2,6 +2,8 @@ server:
   port: 8443
   servlet:
     context-path: /
+  ssl:
+    enabled: false
 
 
 #mysql 连接
@@ -36,8 +38,8 @@ logging:
 
 
 #jwt
-com:
-  sy:
+moe:
+  shuvi:
     jwt:
       secretKsy: '223oiimk'
       refreshTokenExpireTime: 'Pt10H'
