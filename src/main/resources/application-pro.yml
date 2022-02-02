@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8443
   servlet:
     context-path: /
 
@@ -38,8 +38,8 @@ logging:
 moe:
   shuvi:
     jwt:
-      secretKsy: '223oiimk'
-      refreshTokenExpireTime: 'Pt10H'
-      accessTokenExpireTime: 'Pt4H'
-      refreshTokenExpireAppTime: 'P300'
-      issuer: 'moe.shuvi'
+      secretKsy: 223oiimk
+      refreshTokenExpireTime: Pt10H
+      accessTokenExpireTime: Pt4H
+      refreshTokenExpireAppTime: P30D
+      issuer: moe.shuvi

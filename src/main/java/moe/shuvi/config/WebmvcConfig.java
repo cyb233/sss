@@ -38,7 +38,7 @@ public class WebmvcConfig implements WebMvcConfigurer {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.sy.controller"))//扫描相关controller接口
+                .apis(RequestHandlerSelectors.basePackage("moe.shuvi.controller"))//扫描相关controller接口
                 .paths(PathSelectors.any())
                 .build().globalOperationParameters(getList());
     }
