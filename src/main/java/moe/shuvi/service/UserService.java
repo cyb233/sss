@@ -14,7 +14,7 @@ public interface UserService {
 
     Result findByPage(User user, int pageNow, int pageSize) throws Exception;
 
-    Result addUser(User user)throws Exception;
+    Result addOrUpdateUser(User user)throws Exception;
 
     Result removeUserBYId(int id)throws Exception;
 
