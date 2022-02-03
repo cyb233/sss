@@ -5,6 +5,7 @@ server:
   ssl:
     key-store: classpath:shuvi.moe.jks
     key-store-password: wtmjsgllk
+    key-store-type: PKCS12
 
 #mysql 连接
 spring:
