@@ -76,7 +76,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable().//关闭CSRF
+        http.cors().and().csrf().disable().//关闭CSRF
                 //所有请求都要认证，权限的过滤放在注解上
                         authorizeRequests().anyRequest().authenticated()
                 //服务端无状态
