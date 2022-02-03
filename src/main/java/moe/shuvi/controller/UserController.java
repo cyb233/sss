@@ -51,7 +51,7 @@ public class UserController {
     @LogAnnotation(title = "用户模块",action = "用户注册")
     @RequestMapping("/register")
     public Result register(@RequestBody User user)throws Exception{
-        Result result = userService.addUser(user);
+        Result result = userService.addOrUpdateUser(user);
         return result;
     }
     @LogAnnotation(title = "用户模块",action = "用户删除")
@@ -63,7 +63,7 @@ public class UserController {
     @LogAnnotation(title = "用户模块",action = "用户修改")
     @RequestMapping("/update")
     public Result modify(@RequestBody User user)throws Exception{
-        Result result = userService.addUser(user);
+        Result result = userService.addOrUpdateUser(user);
         return result;
     }
 }

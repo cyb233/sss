@@ -1,6 +1,9 @@
 package moe.shuvi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,6 +15,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "s_user")
+@SQLDelete(sql = "update s_user set del = 0 where id = ?")
+@Where(clause = "del = 1")
 public class User implements Serializable {
 
     @Id
@@ -33,6 +38,7 @@ public class User implements Serializable {
     private String userAddress;
     private Integer postCode;
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @CreatedDate
     private Date createTime;
     private Integer referId;
     private String referCode;
@@ -41,7 +47,7 @@ public class User implements Serializable {
     private Integer userType;
     private String userTYpeName;
     private Integer isStart;
-    private Integer del;
+//    private Integer del;
 
     public Integer getId() {
         return id;
@@ -226,14 +232,15 @@ public class User implements Serializable {
     public void setIsStart(Integer isStart) {
         this.isStart = isStart;
     }
+//
+//    public Integer getDel() {
+//        return del;
+//    }
+//
+//    public void setDel(Integer del) {
+//        this.del = del;
+//    }
 
-    public Integer getDel() {
-        return del;
-    }
-
-    public void setDel(Integer del) {
-        this.del = del;
-    }
 
     @Override
     public String toString() {
@@ -261,7 +268,6 @@ public class User implements Serializable {
                 ", userType=" + userType +
                 ", userTYpeName='" + userTYpeName + '\'' +
                 ", isStart=" + isStart +
-                ", del=" + del +
                 '}';
     }
 }
