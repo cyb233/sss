@@ -1,11 +1,11 @@
 server:
-  port: 8443
+  port: 8080
   servlet:
     context-path: /
-  ssl:
-    key-store: classpath:shuvi.moe.jks
-    key-store-password: wtmjsgllk
-    key-store-type: PKCS12
+#  ssl:
+#    key-store: classpath:shuvi.moe.jks
+#    key-store-password: wtmjsgllk
+#    key-store-type: PKCS12
 
 #mysql 连接
 spring:
