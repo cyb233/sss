@@ -2,6 +2,9 @@ server:
   port: 8443
   servlet:
     context-path: /
+  ssl:
+    key-store: classpath:shuvi.moe.jks
+    key-store-password: wtmjsgllk
 
 #mysql 连接
 spring:
