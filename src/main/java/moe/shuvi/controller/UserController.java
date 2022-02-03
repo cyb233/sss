@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/user")
 //跨域允许
-@CrossOrigin
+@CrossOrigin("https://web.shuvi.moe")
 public class UserController {
 
     @Autowired
