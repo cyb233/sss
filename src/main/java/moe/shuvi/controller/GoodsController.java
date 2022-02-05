@@ -34,7 +34,7 @@ public class GoodsController {
 
     @LogAnnotation(title = "商品模块",action = "商品注册")
     @RequestMapping("/addGoods")
-    public Result register(@RequestBody Goods goods)throws Exception{
+    public Result addGoods(@RequestBody Goods goods)throws Exception{
         Result result = goodsService.addGoods(goods);
         return result;
     }
