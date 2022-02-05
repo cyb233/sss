@@ -1,9 +1,13 @@
 package moe.shuvi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.Columns;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,8 +19,11 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "s_user")
-@SQLDelete(sql = "update s_user set del = 0 where id = ?")
+//@SQLDelete(sql = "/")
 @Where(clause = "del = 1")
+//生成时间戳,@CreatedDate
+@EntityListeners(AuditingEntityListener.class)
+@DynamicUpdate
 public class User implements Serializable {
 
     @Id
@@ -39,6 +46,7 @@ public class User implements Serializable {
     private Integer postCode;
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @CreatedDate
+    @Column(name = "createTime", updatable = false, nullable = false)
     private Date createTime;
     private Integer referId;
     private String referCode;
@@ -47,6 +55,8 @@ public class User implements Serializable {
     private Integer userType;
     private String userTYpeName;
     private Integer isStart;
+//    @Column(name = "del", updatable = false,nullable = false)
+//    @Transient
 //    private Integer del;
 
     public Integer getId() {
@@ -232,7 +242,7 @@ public class User implements Serializable {
     public void setIsStart(Integer isStart) {
         this.isStart = isStart;
     }
-//
+
 //    public Integer getDel() {
 //        return del;
 //    }

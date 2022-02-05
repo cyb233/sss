@@ -4,6 +4,7 @@ import moe.shuvi.dao.RoleDao;
 import moe.shuvi.model.Role;
 import moe.shuvi.model.User;
 import moe.shuvi.service.RoleService;
+import moe.shuvi.utils.JpaUtil;
 import moe.shuvi.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -14,13 +15,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional(readOnly = true)
 @Service
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleDao roleDao;
-
+    /**
+     *
+     * @param role     搜索的参数
+     * @return 返回Result
+     * @author 小张
+     */
     @Override
     public Result findByPage(Role role) throws Exception {
         Result result = new Result();
@@ -46,11 +53,31 @@ public class RoleServiceImpl implements RoleService {
         }
         return result;
     }
+    /**
+     * 添加和修改公用一个方法,区别是有id则修改,无id则添加
+     *
+     * @param role 添加或修改参数
+     * @return 成功与否
+     * @throws Exception
+     * @author 小张
+     */
     @Transactional
     @Override
     public Result addOrUpdateRole(Role role) throws Exception {
         Result result = new Result();
-        Role save = roleDao.save(role);
+        Role save = null;
+        if (role.getId() != null) {
+            Optional<Role> originalRole = roleDao.findById(role.getId());
+//            System.out.println("-----" + originalUser.get());
+            Role  newRole = originalRole.get();
+            if (originalRole.isPresent()) {
+                JpaUtil.copyNotNullProperties(role, newRole);
+            }
+//            System.out.println("===>" + newUser);
+            save = roleDao.saveAndFlush(newRole);
+        } else {
+            save = roleDao.saveAndFlush(role);
+        }
         if(save != null){
             result.setData(save);
             result.setCode(Result.CODE_SUCCESS);
@@ -61,13 +88,19 @@ public class RoleServiceImpl implements RoleService {
         }
         return result;
     }
+    /**
+     * @param id 删除参数,逻辑删除
+     * @return 成功与否
+     * @throws Exception
+     * @author 小张
+     */
     @Transactional
     @Override
     public Result removeUserBYId(int id) throws Exception {
         Result result = new Result();
-        if(id >= 0){
-            roleDao.deleteById(id);
-            result.setData(id);
+        int i = roleDao.deleteByRole(id);
+        if(i > 0){
+            result.setData(i);
             result.setCode(Result.CODE_SUCCESS);
             result.setMsg(Result.MSG_SUCCESS);
         }else {

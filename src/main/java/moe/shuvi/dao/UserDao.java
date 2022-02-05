@@ -11,6 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface UserDao extends JpaRepository<User,Integer>, JpaSpecificationExecutor<User> {
 
     @Modifying
-    @Query(value = "delete from s_user where id=?1",nativeQuery = true)
+    @Query(value = "update s_user set del = 0 where id = ?1",nativeQuery = true)
     int deleteByUser(int id);
 }

@@ -3,6 +3,11 @@ package moe.shuvi.dao;
 import moe.shuvi.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 public interface RoleDao extends JpaRepository<Role,Integer>, JpaSpecificationExecutor<Role> {
+    @Modifying
+    @Query(value = "update s_role set del = 0 where id = ?1",nativeQuery = true)
+    int deleteByRole(int id);
 }

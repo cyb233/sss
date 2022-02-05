@@ -19,22 +19,21 @@ public class UserTest {
     @Test
     public void findPage() throws Exception {
         User user = new User();
-        user.setLoginCode("12");
-        Result byPage = userService.findByPage(user, 1, 2);
+//        user.setLoginCode("22");
+        Result byPage = userService.findByPage(user, 1, 10);
         Page<User> data = (Page<User>) byPage.getData();
         System.out.println(data.getContent());
     }
-
     @Test
     public void deleteUser() throws Exception {
-        Result result = userService.removeUserBYId(5);
-        System.out.println(result.getMsg());
+        Result result = userService.removeUserBYId(15);
+        System.out.println(result.getCode());
     }
 
     @Test
     public void addUser() throws Exception {
         User user = new User();
-        user.setLoginCode("1234");
+        user.setLoginCode("9999");
         user.setPassword("1234");
         user.setPassword2("1234");
         user.setUsername("jack");
@@ -56,5 +55,14 @@ public class UserTest {
         user.setUserTYpeName("1234");
         Result result = userService.addOrUpdateUser(user);
         System.out.println(result.getMsg());
+    }
+    @Test
+    public void updateUser()throws Exception{
+        User user = new User();
+        user.setId(10);
+        user.setLoginCode("jjj");
+        Result result = userService.addOrUpdateUser(user);
+        System.out.println(result.getData());
+
     }
 }
