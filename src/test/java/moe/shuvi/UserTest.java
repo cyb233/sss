@@ -11,7 +11,7 @@ import org.springframework.data.domain.Page;
 
 import java.util.Date;
 
-@SpringBootTest
+//@SpringBootTest
 public class UserTest {
     @Autowired
     private UserService userService;

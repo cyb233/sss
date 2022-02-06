@@ -57,7 +57,10 @@ public class User implements Serializable {
     private Integer isStart;
 //    @Column(name = "del", updatable = false,nullable = false)
 //    @Transient
-//    private Integer del;
+//    private Integer del;'
+    @OneToOne
+    @JoinColumn(name = "referCode")
+    private Dictionary dictionary;
 
     public Integer getId() {
         return id;
