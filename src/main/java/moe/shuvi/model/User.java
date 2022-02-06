@@ -58,9 +58,9 @@ public class User implements Serializable {
 //    @Column(name = "del", updatable = false,nullable = false)
 //    @Transient
 //    private Integer del;'
-    @OneToOne
-    @JoinColumn(name = "referCode")
-    private Dictionary dictionary;
+//    @OneToOne
+//    @JoinColumn(name = "referCode")
+//    private Dictionary dictionary;
 
     public Integer getId() {
         return id;
