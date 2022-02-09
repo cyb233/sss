@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名", required = true ,dataType = "string"),
+            @ApiImplicitParam(name = "loginCode", value = "用户名", required = true ,dataType = "string"),
             @ApiImplicitParam(name = "password", value = "密码", required = true ,dataType = "string")
     })
     @LogAnnotation(title = "用户模块",action = "用户登录")
