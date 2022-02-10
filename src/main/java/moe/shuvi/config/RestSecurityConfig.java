@@ -58,11 +58,9 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 
         JdbcUserDetailsManager jdbcDao = new JdbcUserDetailsManager(dataSource);
         //按用户名查询UserDetails
-        jdbcDao.setUsersByUsernameQuery("SELECT username,PASSWORD,del AS enabled FROM s_user WHERE loginCode=?");
+        jdbcDao.setUsersByUsernameQuery("select loginCode,password,del from s_user where loginCode = ?");
         //查询所有权限
-        jdbcDao.setAuthoritiesByUsernameQuery("SELECT u.username,u.username AS authority FROM s_user u " +
-                "LEFT JOIN s_role AS r ON u.roleId=r.id " +
-                "WHERE u.loginCode = ?");
+        jdbcDao.setAuthoritiesByUsernameQuery("select loginCode,roleId from s_user where loginCode = ?");
         //查询权限的开关
         jdbcDao.setEnableAuthorities(true);
 
