@@ -7,7 +7,7 @@ public interface GoodsService {
 
     Result findByPage(Goods goods,int pageNow,int pageSize) throws Exception;
 
-    Result addGoods(Goods goods) throws Exception;
+    Result addOrUpdateGoods(Goods goods) throws Exception;
 
     Result removeGoodsById(int id) throws Exception;
 }

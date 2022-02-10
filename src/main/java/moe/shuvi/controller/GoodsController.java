@@ -5,7 +5,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import moe.shuvi.log.LogAnnotation;
 import moe.shuvi.model.Goods;
-import moe.shuvi.model.User;
 import moe.shuvi.service.GoodsService;
 import moe.shuvi.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class GoodsController {
     @LogAnnotation(title = "商品模块",action = "商品注册")
     @RequestMapping("/addGoods")
     public Result addGoods(@RequestBody Goods goods)throws Exception{
-        Result result = goodsService.addGoods(goods);
+        Result result = goodsService.addOrUpdateGoods(goods);
         return result;
     }
     @LogAnnotation(title = "商品模块",action = "商品删除")
@@ -47,7 +46,7 @@ public class GoodsController {
     @LogAnnotation(title = "商品模块",action = "商品修改")
     @RequestMapping("/update")
     public Result modify(@RequestBody Goods goods)throws Exception{
-        Result result = goodsService.addGoods(goods);
+        Result result = goodsService.addOrUpdateGoods(goods);
         return result;
     }
 }

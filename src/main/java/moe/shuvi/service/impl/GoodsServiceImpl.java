@@ -3,6 +3,7 @@ package moe.shuvi.service.impl;
 import moe.shuvi.dao.GoodsDao;
 import moe.shuvi.model.Goods;
 import moe.shuvi.service.GoodsService;
+import moe.shuvi.utils.JpaUtil;
 import moe.shuvi.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -56,9 +59,21 @@ public class GoodsServiceImpl implements GoodsService {
      */
     @Transactional
     @Override
-    public Result addGoods(Goods goods) throws Exception {
+    public Result addOrUpdateGoods(Goods goods) throws Exception {
         Result result = new Result();
-        Goods save = goodsDao.save(goods);
+        Goods save = null;
+        if (goods.getId() != null) {
+            Optional<Goods> originalGoods = goodsDao.findById(goods.getId());
+            Goods newGoods = originalGoods.get();
+            if (originalGoods.isPresent()) {
+                JpaUtil.copyNotNullProperties(goods, newGoods);
+            }
+            save = goodsDao.saveAndFlush(newGoods);
+        } else {
+            save = goodsDao.saveAndFlush(goods);
+        }
+
+        // goodsDao.save
         if(save != null){
             result.setData(save);
             result.setCode(Result.CODE_SUCCESS);
