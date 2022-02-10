@@ -61,6 +61,7 @@ public class UserServiceImpl implements UserService {
                 //contains()  全部模糊匹配  startsWith()  前部精确后部模糊   endsWith()  后部精确前部模糊
                 //propertyPath 参数是指表字段 大写自动转下划线
                 .withMatcher("loginCode", ExampleMatcher.GenericPropertyMatchers.contains())
+                .withMatcher("username", ExampleMatcher.GenericPropertyMatchers.contains())
                 //.withIgnorePaths()  忽略字段，不管输入什么值都不加入查询条件
                 //.withIgnoreNullValues()  忽略空值
                 .withIgnoreNullValues();
