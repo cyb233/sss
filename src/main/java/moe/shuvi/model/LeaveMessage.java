@@ -1,5 +1,9 @@
 package moe.shuvi.model;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -8,6 +12,10 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "s_leaveMessage")
+@Where(clause = "del = 1")
+//生成时间戳,@CreatedDate
+@EntityListeners(AuditingEntityListener.class)
+@DynamicUpdate
 public class LeaveMessage implements Serializable {
 
     @Id

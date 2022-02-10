@@ -1,6 +1,9 @@
 package moe.shuvi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +14,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "s_userAccountLog")
+@Where(clause = "del = 1")
+//生成时间戳,@CreatedDate
+@EntityListeners(AuditingEntityListener.class)
+@DynamicUpdate
 public class UserAccountLog implements Serializable {
 
     @Id
@@ -24,7 +31,7 @@ public class UserAccountLog implements Serializable {
     private String baseIn;
     private String baseOut;
     private String baseBalance;
-    private String repratIn;
+    private String repeatIn;
     private String repeatOut;
     private String repeatBalance;
     private Integer del;
@@ -94,11 +101,11 @@ public class UserAccountLog implements Serializable {
     }
 
     public String getRepratIn() {
-        return repratIn;
+        return repeatIn;
     }
 
     public void setRepratIn(String repratIn) {
-        this.repratIn = repratIn;
+        this.repeatIn = repratIn;
     }
 
     public String getRepeatOut() {
@@ -136,7 +143,7 @@ public class UserAccountLog implements Serializable {
                 ", baseIn='" + baseIn + '\'' +
                 ", baseOut='" + baseOut + '\'' +
                 ", baseBalance='" + baseBalance + '\'' +
-                ", repratIn='" + repratIn + '\'' +
+                ", repratIn='" + repeatIn + '\'' +
                 ", repeatOut='" + repeatOut + '\'' +
                 ", repeatBalance='" + repeatBalance + '\'' +
                 ", del=" + del +

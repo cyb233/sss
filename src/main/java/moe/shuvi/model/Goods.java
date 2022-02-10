@@ -1,6 +1,10 @@
 package moe.shuvi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +15,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "s_goods")
+@Where(clause = "del = 1")
+//生成时间戳,@CreatedDate
+@EntityListeners(AuditingEntityListener.class)
+@DynamicUpdate
 public class Goods implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +32,8 @@ public class Goods implements Serializable {
     private Integer num;
     private String unit;
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @CreatedDate
+    @Column(name = "createTime", updatable = false, nullable = false)
     private Date createTime;
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date lastUpateTime;

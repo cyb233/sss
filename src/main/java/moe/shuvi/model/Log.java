@@ -1,6 +1,7 @@
 package moe.shuvi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,26 +22,18 @@ public class Log implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private Integer userId;
-
     private String username;
-
     private String operation;
-
     private Integer time;
-
     private String method;
-
     private String params;
-
     private String ip;
-
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    @CreatedDate
+    @Column(name = "createTime", updatable = false, nullable = false)
     private Date createTime;
-
     private static final long serialVersionUID = 1L;
-
 
     public Integer getId() {
         return id;

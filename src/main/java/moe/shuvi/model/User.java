@@ -1,13 +1,10 @@
 package moe.shuvi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -53,7 +50,7 @@ public class User implements Serializable {
     private Integer roleId;
     private String roleName;
     private Integer userType;
-    private String userTYpeName;
+    private String userTypeName;
     private Integer isStart;
 //    @Column(name = "del", updatable = false,nullable = false)
 //    @Transient
@@ -231,11 +228,11 @@ public class User implements Serializable {
     }
 
     public String getUserTYpeName() {
-        return userTYpeName;
+        return userTypeName;
     }
 
     public void setUserTYpeName(String userTYpeName) {
-        this.userTYpeName = userTYpeName;
+        this.userTypeName = userTYpeName;
     }
 
     public Integer getIsStart() {
@@ -279,7 +276,7 @@ public class User implements Serializable {
                 ", roleId=" + roleId +
                 ", roleName='" + roleName + '\'' +
                 ", userType=" + userType +
-                ", userTYpeName='" + userTYpeName + '\'' +
+                ", userTYpeName='" + userTypeName + '\'' +
                 ", isStart=" + isStart +
                 '}';
     }
