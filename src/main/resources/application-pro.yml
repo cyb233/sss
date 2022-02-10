@@ -15,6 +15,12 @@ spring:
     url: jdbc:mysql://119.23.173.153:3306/shop?useSSL=false&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
+#redis
+  redis:
+    host: 119.23.173.153
+    port: 6379
+    database: 0
+    password: 511002zzl
   #springdatajpa
   jpa:
     database: mysql
