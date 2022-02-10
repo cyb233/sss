@@ -5,6 +5,7 @@ import moe.shuvi.model.Role;
 import moe.shuvi.model.User;
 import moe.shuvi.service.RoleService;
 import moe.shuvi.utils.JpaUtil;
+import moe.shuvi.utils.JwtTokenUtil;
 import moe.shuvi.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -22,9 +23,9 @@ import java.util.Optional;
 public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleDao roleDao;
+
     /**
-     *
-     * @param role     搜索的参数
+     * @param role 搜索的参数
      * @return 返回Result
      * @author 小张
      */
@@ -36,23 +37,24 @@ public class RoleServiceImpl implements RoleService {
                 // ExampleMatcher.GenericPropertyMatcher::contains  lambda表达式
                 //contains()  全部模糊匹配  startsWith()  前部精确后部模糊   endsWith()  后部精确前部模糊
                 //propertyPath 参数是指表字段 大写自动转下划线
-                .withMatcher("roleCode",ExampleMatcher.GenericPropertyMatchers.contains())
-                .withMatcher("roleName",ExampleMatcher.GenericPropertyMatchers.contains())
+                .withMatcher("roleCode", ExampleMatcher.GenericPropertyMatchers.contains())
+                .withMatcher("roleName", ExampleMatcher.GenericPropertyMatchers.contains())
                 //.withIgnorePaths()  忽略字段，不管输入什么值都不加入查询条件
                 //.withIgnoreNullValues()  忽略空值
                 .withIgnoreNullValues();
-        Example<Role> example = Example.of(role,matcher);
+        Example<Role> example = Example.of(role, matcher);
         List<Role> all = roleDao.findAll(example);
-        if(all != null){
+        if (all != null) {
             result.setData(all);
             result.setMsg(Result.MSG_SUCCESS);
             result.setCode(Result.CODE_SUCCESS);
-        }else {
+        } else {
             result.setMsg(Result.MSG_ERROR);
             result.setCode(Result.CODE_ERROR);
         }
         return result;
     }
+
     /**
      * 添加和修改公用一个方法,区别是有id则修改,无id则添加
      *
@@ -69,25 +71,27 @@ public class RoleServiceImpl implements RoleService {
         if (role.getId() != null) {
             Optional<Role> originalRole = roleDao.findById(role.getId());
 //            System.out.println("-----" + originalUser.get());
-            Role  newRole = originalRole.get();
+            Role newRole = originalRole.get();
             if (originalRole.isPresent()) {
                 JpaUtil.copyNotNullProperties(role, newRole);
             }
 //            System.out.println("===>" + newUser);
             save = roleDao.saveAndFlush(newRole);
         } else {
+
             save = roleDao.saveAndFlush(role);
         }
-        if(save != null){
+        if (save != null) {
             result.setData(save);
             result.setCode(Result.CODE_SUCCESS);
             result.setMsg(Result.MSG_SUCCESS);
-        }else {
+        } else {
             result.setMsg(Result.MSG_SUCCESS);
             result.setCode(Result.CODE_ERROR);
         }
         return result;
     }
+
     /**
      * @param id 删除参数,逻辑删除
      * @return 成功与否
@@ -99,11 +103,11 @@ public class RoleServiceImpl implements RoleService {
     public Result removeUserBYId(int id) throws Exception {
         Result result = new Result();
         int i = roleDao.deleteByRole(id);
-        if(i > 0){
+        if (i > 0) {
             result.setData(i);
             result.setCode(Result.CODE_SUCCESS);
             result.setMsg(Result.MSG_SUCCESS);
-        }else {
+        } else {
             result.setCode(Result.CODE_ERROR);
             result.setMsg(Result.MSG_ERROR);
         }

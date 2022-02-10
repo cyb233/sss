@@ -60,7 +60,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
         //按用户名查询UserDetails
         jdbcDao.setUsersByUsernameQuery("select loginCode,password,del from s_user where loginCode = ?");
         //查询所有权限
-        jdbcDao.setAuthoritiesByUsernameQuery("select loginCode,roleId from s_user where loginCode = ?");
+        jdbcDao.setAuthoritiesByUsernameQuery("select loginCode,roleName from s_user where loginCode = ?");
         //查询权限的开关
         jdbcDao.setEnableAuthorities(true);
 

@@ -56,4 +56,14 @@ public class Result {
     public void setToken(String token) {
         this.token = token;
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                ", token='" + token + '\'' +
+                '}';
+    }
 }

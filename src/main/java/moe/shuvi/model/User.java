@@ -5,6 +5,7 @@ import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.hibernate.mapping.ToOne;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -12,6 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author qianjianyu
@@ -51,16 +53,19 @@ public class User implements Serializable {
     private Integer referId;
     private String referCode;
     private Integer roleId;
-    private String roleName;
+//    private String roleName;
     private Integer userType;
-    private String userTYpeName;
+//    private String userTYpeName;
     private Integer isStart;
 //    @Column(name = "del", updatable = false,nullable = false)
 //    @Transient
 //    private Integer del;'
-//    @OneToOne
-//    @JoinColumn(name = "referCode")
-//    private Dictionary dictionary;
+    @OneToOne
+    @JoinColumn(name = "userType",referencedColumnName="typeCode",insertable = false,updatable = false)
+    private Dictionary dictionary;
+    @OneToOne
+    @JoinColumn(name = "roleId",referencedColumnName="roleCode",insertable = false,updatable = false)
+    private Role role;
 
     public Integer getId() {
         return id;
@@ -214,13 +219,13 @@ public class User implements Serializable {
         this.roleId = roleId;
     }
 
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
+//    public String getRoleName() {
+//        return roleName;
+//    }
+//
+//    public void setRoleName(String roleName) {
+//        this.roleName = roleName;
+//    }
 
     public Integer getUserType() {
         return userType;
@@ -229,14 +234,14 @@ public class User implements Serializable {
     public void setUserType(Integer userType) {
         this.userType = userType;
     }
-
-    public String getUserTYpeName() {
-        return userTYpeName;
-    }
-
-    public void setUserTYpeName(String userTYpeName) {
-        this.userTYpeName = userTYpeName;
-    }
+//
+//    public String getUserTYpeName() {
+//        return userTYpeName;
+//    }
+//
+//    public void setUserTYpeName(String userTYpeName) {
+//        this.userTYpeName = userTYpeName;
+//    }
 
     public Integer getIsStart() {
         return isStart;
@@ -277,10 +282,10 @@ public class User implements Serializable {
                 ", referId=" + referId +
                 ", referCode='" + referCode + '\'' +
                 ", roleId=" + roleId +
-                ", roleName='" + roleName + '\'' +
                 ", userType=" + userType +
-                ", userTYpeName='" + userTYpeName + '\'' +
                 ", isStart=" + isStart +
+                ", dictionary=" + dictionary +
+                ", role=" + role +
                 '}';
     }
 }
