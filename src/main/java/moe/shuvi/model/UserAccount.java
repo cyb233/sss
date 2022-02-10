@@ -3,6 +3,7 @@ package moe.shuvi.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Where;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -24,6 +25,8 @@ public class UserAccount implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer userId;
+    @CreatedDate
+    @Column(name = "accountDate", updatable = false, nullable = false)
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date accountDate;
     private String stat;
