@@ -49,23 +49,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Result findAll(User user, int pageNow, int pageSize) throws Exception {
-        Result result = new Result();
-        PageRequest p = PageRequest.of(pageNow - 1, pageSize);
-        Account account = new Account();
-        Result byPage = userService.findByPage(user, pageNow, pageSize);
-        Page<User> users =(Page<User>)byPage.getData();
-        List<User> content = users.getContent();
-        //复杂查询的分装类
-        Example<Account> example = Example.of(account);
-        Page<Account> all = accountDao.findAll(example, p);
-        if (all != null) {
-            result.setData(all);
-            result.setMsg(Result.MSG_SUCCESS);
-            result.setCode(Result.CODE_SUCCESS);
-        } else {
-            result.setMsg(Result.MSG_ERROR);
-            result.setCode(Result.CODE_ERROR);
-        }
-        return result;
+       return null;
     }
 }
