@@ -15,25 +15,25 @@ import org.springframework.web.bind.annotation.*;
 public class RoleController {
     @Autowired
     private RoleService roleService;
-    @LogAnnotation(title = "角色模块",action = "角色列表")
+    @LogAnnotation(title = "角色模块",action = "角色查询")
     @RequestMapping("/list")
     public Result findRole(@RequestBody Role role)throws Exception{
         Result byPage = roleService.findByPage(role);
         return byPage;
     }
-    @LogAnnotation(title = "角色模块",action = "角色列表")
+    @LogAnnotation(title = "角色模块",action = "角色添加")
     @RequestMapping("/add")
     public Result addRole(@RequestBody Role role)throws Exception{
         Result result = roleService.addOrUpdateRole(role);
         return result;
     }
-    @LogAnnotation(title = "角色模块",action = "角色列表")
+    @LogAnnotation(title = "角色模块",action = "角色修改")
     @RequestMapping("/update")
     public Result updateRole(@RequestBody Role role)throws Exception{
         Result result = roleService.addOrUpdateRole(role);
         return result;
     }
-    @LogAnnotation(title = "角色模块",action = "角色列表")
+    @LogAnnotation(title = "角色模块",action = "角色删除")
     @RequestMapping("/remove")
     public Result removeRole(@RequestParam int id)throws Exception{
         Result result = roleService.removeUserBYId(id);
