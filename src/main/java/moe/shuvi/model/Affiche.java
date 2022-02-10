@@ -1,5 +1,9 @@
 package moe.shuvi.model;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Where;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,6 +13,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "s_affiche")
+@Where(clause = "del = 1")
+//生成时间戳,@CreatedDate
+@EntityListeners(AuditingEntityListener.class)
+@DynamicUpdate
 public class Affiche implements Serializable {
 
     @Id

@@ -24,7 +24,7 @@ public class UserAccountLog implements Serializable {
     private String baseIn;
     private String baseOut;
     private String baseBalance;
-    private String repeatIn;
+    private String repratIn;
     private String repeatOut;
     private String repeatBalance;
     private Integer del;
@@ -93,12 +93,12 @@ public class UserAccountLog implements Serializable {
         this.baseBalance = baseBalance;
     }
 
-    public String getRepeatIn() {
-        return repeatIn;
+    public String getRepratIn() {
+        return repratIn;
     }
 
-    public void setRepeatIn(String repratIn) {
-        this.repeatIn = repratIn;
+    public void setRepratIn(String repratIn) {
+        this.repratIn = repratIn;
     }
 
     public String getRepeatOut() {
@@ -136,7 +136,7 @@ public class UserAccountLog implements Serializable {
                 ", baseIn='" + baseIn + '\'' +
                 ", baseOut='" + baseOut + '\'' +
                 ", baseBalance='" + baseBalance + '\'' +
-                ", repeatIn='" + repeatIn + '\'' +
+                ", repratIn='" + repratIn + '\'' +
                 ", repeatOut='" + repeatOut + '\'' +
                 ", repeatBalance='" + repeatBalance + '\'' +
                 ", del=" + del +
