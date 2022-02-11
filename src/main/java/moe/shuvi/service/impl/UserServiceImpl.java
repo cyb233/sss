@@ -1,11 +1,14 @@
 package moe.shuvi.service.impl;
 
 import moe.shuvi.dao.UserDao;
+import moe.shuvi.model.Account;
 import moe.shuvi.model.User;
+import moe.shuvi.service.AccountService;
 import moe.shuvi.service.UserService;
 import moe.shuvi.utils.JpaUtil;
 import moe.shuvi.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
@@ -14,12 +17,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 @Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    @Lazy
+    private AccountService accountService;
 
     @Override
     public User findByLogin(User user) throws Exception {
@@ -45,6 +52,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 带有多表查询
+     *
      * @param user     搜索的参数
      * @param pageNow  分页的当前页
      * @param pageSize 分页的页数
@@ -91,22 +99,27 @@ public class UserServiceImpl implements UserService {
     public Result addOrUpdateUser(User user) throws Exception {
         Result result = new Result();
         User save = null;
+        int i = 0;
         if (user.getId() != null) {
+            user.setAccountCode(null);
             Optional<User> originalUser = userDao.findById(user.getId());
-//            System.out.println("-----" + originalUser.get());
             User newUser = originalUser.get();
             if (originalUser.isPresent()) {
                 JpaUtil.copyNotNullProperties(user, newUser);
             }
-//            System.out.println("===>" + newUser);
             save = userDao.saveAndFlush(newUser);
         } else {
+            Account account = new Account();
+            UUID uuid = UUID.randomUUID();
+            user.setAccountCode(uuid.toString());
             save = userDao.saveAndFlush(user);
+            account.setAccounts(uuid.toString());
+            i = accountService.saveAccount(account);
         }
 
 
 //        userDao.save
-        if (save != null) {
+        if (save.getId() != null && i == 1) {
             result.setData(save);
             result.setCode(Result.CODE_SUCCESS);
             result.setMsg(Result.MSG_SUCCESS);

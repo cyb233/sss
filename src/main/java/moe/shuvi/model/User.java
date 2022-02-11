@@ -70,6 +70,26 @@ public class User implements Serializable {
     @OneToOne
     @JoinColumn(name = "accountCode",referencedColumnName = "accounts",insertable = false,updatable = false)
     private Account account;
+    @Transient
+    private Integer pageNow;
+    @Transient
+    private Integer pageSize;
+
+    public Integer getPageNow() {
+        return pageNow;
+    }
+
+    public void setPageNow(Integer pageNow) {
+        this.pageNow = pageNow;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
 
     public Integer getId() {
         return id;

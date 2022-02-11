@@ -46,8 +46,8 @@ public class UserController {
     })
     @LogAnnotation(title = "用户模块", action = "用户查询")
     @RequestMapping("/page")
-    public Result findAll(@RequestBody User user, int pageNow, @RequestParam int pageSize) throws Exception {
-        Result byPage = userService.findByPage(user, pageNow, pageSize);
+    public Result findAll(@RequestBody User user) throws Exception {
+        Result byPage = userService.findByPage(user, user.getPageNow(), user.getPageSize());
         return byPage;
     }
 

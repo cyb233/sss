@@ -31,10 +31,10 @@ public class Role implements Serializable {
     private Integer isStart;
     @CreatedDate
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    @Column(name = "createDate",updatable = false,nullable = false)
+    @Column(name = "createDate", updatable = false, nullable = false)
     private Date createDate;
     private String createBy;
-//    private Integer del;
+    //    private Integer del;
 
     public Integer getId() {
         return id;
