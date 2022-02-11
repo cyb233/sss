@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
+ * 数据字典
  * @author qianjianyu
  */
 @Entity
@@ -26,6 +27,26 @@ public class Dictionary implements Serializable {
     private Integer valueId;
     private String valueName;
     private Integer del;
+    @Transient
+    private Integer pageNow;
+    @Transient
+    private Integer pageSize;
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getPageNow() {
+        return pageNow;
+    }
+
+    public void setPageNow(Integer pageNow) {
+        this.pageNow = pageNow;
+    }
 
     public Integer getId() {
         return id;

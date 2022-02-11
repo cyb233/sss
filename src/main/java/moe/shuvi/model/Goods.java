@@ -39,6 +39,26 @@ public class Goods implements Serializable {
     private Date lastUpateTime;
     private String reatedBy;
     private Integer del;
+    @Transient
+    private Integer pageNow;
+    @Transient
+    private Integer pageSize;
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getPageNow() {
+        return pageNow;
+    }
+
+    public void setPageNow(Integer pageNow) {
+        this.pageNow = pageNow;
+    }
 
     public Integer getId() {
         return id;

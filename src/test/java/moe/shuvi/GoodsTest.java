@@ -1,6 +1,4 @@
 package moe.shuvi;
-
-import moe.shuvi.dao.GoodsDao;
 import moe.shuvi.model.Goods;
 import moe.shuvi.service.GoodsService;
 import moe.shuvi.utils.Result;
