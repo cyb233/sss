@@ -1,6 +1,7 @@
 package moe.shuvi.service.impl;
 
 import moe.shuvi.dao.AccountDao;
+import moe.shuvi.dao.UserDao;
 import moe.shuvi.model.Account;
 import moe.shuvi.model.User;
 import moe.shuvi.service.AccountService;
@@ -22,6 +23,8 @@ import java.util.Optional;
 public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountDao accountDao;
+//    @Autowired
+//    private UserDao userDao;
     @Autowired
     private UserService userService;
 
@@ -29,18 +32,19 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Result transferAccount(User user, String toAccount, Double money) throws Exception {
         Result result = new Result();
-        Account account = new Account();
-        account.setUserId(user.getId());
-        Example<Account> example = Example.of(account);
-        Optional<Account> one = accountDao.findOne(example);
-        Account byId = one.get();
-        String accountIn = byId.getAccount();
-        int In = accountDao.addMoney(toAccount, money);
-        int To = accountDao.deleteMoney(accountIn, money);
-        if (In + To == 2) {
-            result.setCode(Result.CODE_SUCCESS);
-            result.setMsg(Result.MSG_SUCCESS);
-        } else {
+        User byLogin = userService.findByLogin(user);
+        if(byLogin != null){
+            String accountIn = byLogin.getAccountCode();
+            int In = accountDao.addMoney(toAccount, money);
+            int To = accountDao.deleteMoney(accountIn, money);
+            if (In + To == 2) {
+                result.setCode(Result.CODE_SUCCESS);
+                result.setMsg(Result.MSG_SUCCESS);
+            } else {
+                result.setMsg(Result.MSG_ERROR);
+                result.setCode(Result.CODE_ERROR);
+            }
+        }else {
             result.setMsg(Result.MSG_ERROR);
             result.setCode(Result.CODE_ERROR);
         }

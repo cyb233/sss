@@ -55,7 +55,7 @@ public class User implements Serializable {
     private Integer roleId;
     //    private String roleName;
     private Integer userType;
-    private Integer accountId;
+    private String accountCode;
     //    private String userTYpeName;
     private Integer isStart;
     //    @Column(name = "del", updatable = false,nullable = false)
@@ -68,8 +68,9 @@ public class User implements Serializable {
     @JoinColumn(name = "roleId",referencedColumnName="roleCode",insertable = false,updatable = false)
     private Role role;
     @OneToOne
-    @JoinColumn(name = "accountId",referencedColumnName = "userId",insertable = false,updatable = false)
+    @JoinColumn(name = "accountCode",referencedColumnName = "accounts",insertable = false,updatable = false)
     private Account account;
+
     public Integer getId() {
         return id;
     }
@@ -186,14 +187,6 @@ public class User implements Serializable {
         return postCode;
     }
 
-    public Integer getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
-    }
-
     public void setPostCode(Integer postCode) {
         this.postCode = postCode;
     }
@@ -230,14 +223,6 @@ public class User implements Serializable {
         this.roleId = roleId;
     }
 
-//    public String getRoleName() {
-//        return roleName;
-//    }
-//
-//    public void setRoleName(String roleName) {
-//        this.roleName = roleName;
-//    }
-
     public Integer getUserType() {
         return userType;
     }
@@ -245,14 +230,14 @@ public class User implements Serializable {
     public void setUserType(Integer userType) {
         this.userType = userType;
     }
-//
-//    public String getUserTYpeName() {
-//        return userTYpeName;
-//    }
-//
-//    public void setUserTYpeName(String userTYpeName) {
-//        this.userTYpeName = userTYpeName;
-//    }
+
+    public String getAccountCode() {
+        return accountCode;
+    }
+
+    public void setAccountCode(String accountCode) {
+        this.accountCode = accountCode;
+    }
 
     public Integer getIsStart() {
         return isStart;
@@ -261,15 +246,6 @@ public class User implements Serializable {
     public void setIsStart(Integer isStart) {
         this.isStart = isStart;
     }
-
-//    public Integer getDel() {
-//        return del;
-//    }
-//
-//    public void setDel(Integer del) {
-//        this.del = del;
-//    }
-
 
     public Dictionary getDictionary() {
         return dictionary;
@@ -318,7 +294,7 @@ public class User implements Serializable {
                 ", referCode='" + referCode + '\'' +
                 ", roleId=" + roleId +
                 ", userType=" + userType +
-                ", accountId=" + accountId +
+                ", accountCode=" + accountCode +
                 ", isStart=" + isStart +
                 ", dictionary=" + dictionary +
                 ", role=" + role +

@@ -13,10 +13,10 @@ public interface AccountDao extends JpaRepository<Account,Integer>, JpaSpecifica
     int deleteByAccount(int id);
 
     @Modifying
-    @Query(value = "update s_account set money=money+?2 where account = ?1",nativeQuery = true)
+    @Query(value = "update s_account set money=money+?2 where accounts = ?1",nativeQuery = true)
     int addMoney(String account,Double money)throws Exception;
 
     @Modifying
-    @Query(value = "update s_account set money=money-?2 where account = ?1",nativeQuery = true)
+    @Query(value = "update s_account set money=money-?2 where accounts = ?1",nativeQuery = true)
     int deleteMoney(String account,Double money)throws Exception;
 }
