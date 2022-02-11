@@ -10,7 +10,7 @@ import moe.shuvi.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@Api(value = "GoodsController",description = "商品登录登出汇总",tags = "GoodsController")
+@Api(value = "GoodsController",description = "商品购物管理汇总",tags = "GoodsController")
 @RestController
 @RequestMapping("/goods")
 //跨域允许
@@ -26,8 +26,8 @@ public class GoodsController {
     })
     @LogAnnotation(title = "商品模块",action = "商品查询")
     @RequestMapping("/page")
-    public Result findAll(@RequestBody Goods goods, int pageNow, @RequestParam int pageSize) throws Exception{
-        Result result = goodsService.findByPage(goods, pageNow, pageSize);
+    public Result findAll(@RequestBody Goods goods) throws Exception{
+        Result result = goodsService.findByPage(goods, goods.getPageNow(), goods.getPageSize());
         return result;
     }
 

@@ -33,9 +33,9 @@ public class GoodsServiceImpl implements GoodsService {
      * @return 返回Result
      * @author qianjianyu
      */
-    @Transactional
     @Override
     public Result findByPage(Goods goods, int pageNow, int pageSize) throws Exception {
+        //开启对 @Transactional的支持
         redisTemplate.setEnableTransactionSupport(true);
         Result result = new Result();
         Page<Goods> newAll = null;
@@ -46,7 +46,7 @@ public class GoodsServiceImpl implements GoodsService {
             System.out.println("mysql");
             PageRequest p = PageRequest.of(pageNow - 1, pageSize);
             ExampleMatcher matcher = ExampleMatcher.matching()
-                    .withMatcher("loginCode", ExampleMatcher.GenericPropertyMatchers.contains())
+                    .withMatcher("goodsName", ExampleMatcher.GenericPropertyMatchers.contains())
                     .withIgnoreNullValues();
             Example<Goods> example = Example.of(goods, matcher);
             Page<Goods> all = goodsDao.findAll(example, p);
