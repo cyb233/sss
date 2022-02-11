@@ -16,7 +16,7 @@ public class AccountTest {
     @Test
     public void transferAccount() throws Exception {
         User user = new User();
-        user.setId(10);
+        user.setId(6);
         Result result = accountService.transferAccount(user, "4321", 200.0);
         System.out.println(result.getMsg());
     }
