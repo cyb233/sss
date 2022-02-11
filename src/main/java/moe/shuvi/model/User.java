@@ -55,6 +55,7 @@ public class User implements Serializable {
     private Integer roleId;
     //    private String roleName;
     private Integer userType;
+    private Integer accountId;
     //    private String userTYpeName;
     private Integer isStart;
     //    @Column(name = "del", updatable = false,nullable = false)
@@ -66,7 +67,9 @@ public class User implements Serializable {
     @OneToOne
     @JoinColumn(name = "roleId",referencedColumnName="roleCode",insertable = false,updatable = false)
     private Role role;
-
+    @OneToOne
+    @JoinColumn(name = "accountId",referencedColumnName = "userId",insertable = false,updatable = false)
+    private Account account;
     public Integer getId() {
         return id;
     }
@@ -183,6 +186,14 @@ public class User implements Serializable {
         return postCode;
     }
 
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
+    }
+
     public void setPostCode(Integer postCode) {
         this.postCode = postCode;
     }
@@ -260,6 +271,30 @@ public class User implements Serializable {
 //    }
 
 
+    public Dictionary getDictionary() {
+        return dictionary;
+    }
+
+    public void setDictionary(Dictionary dictionary) {
+        this.dictionary = dictionary;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -283,9 +318,11 @@ public class User implements Serializable {
                 ", referCode='" + referCode + '\'' +
                 ", roleId=" + roleId +
                 ", userType=" + userType +
+                ", accountId=" + accountId +
                 ", isStart=" + isStart +
                 ", dictionary=" + dictionary +
                 ", role=" + role +
+                ", account=" + account +
                 '}';
     }
 }

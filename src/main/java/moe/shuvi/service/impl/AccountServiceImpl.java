@@ -46,9 +46,9 @@ public class AccountServiceImpl implements AccountService {
         }
         return result;
     }
-
     @Override
     public Result findAll(User user, int pageNow, int pageSize) throws Exception {
-       return null;
+
+        return null;
     }
 }

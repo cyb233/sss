@@ -24,7 +24,7 @@ public class UserTest {
 //        all.forEach(System.out::println);
         User user = new User();
 //        user.setLoginCode("12");
-        Result byPage = userService.findByPage(user, 2, 3);
+        Result byPage = userService.findByPage(user, 1, 3);
         Page<User> data = (Page<User>)byPage.getData();
         data.getContent().forEach(System.out::println);
     }

@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -17,7 +18,7 @@ import java.util.Date;
 //生成时间戳,@CreatedDate
 @EntityListeners(AuditingEntityListener.class)
 @DynamicUpdate
-public class Account {
+public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -29,6 +30,7 @@ public class Account {
     @Column(name = "createTime", updatable = false, nullable = false)
     private Date createTime;
     private Integer state;
+
 
     public Integer getId() {
         return id;
@@ -77,6 +79,7 @@ public class Account {
     public void setState(Integer state) {
         this.state = state;
     }
+
 
     @Override
     public String toString() {
