@@ -22,15 +22,13 @@ public class Account implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer userId;
-    private String account;
+    private String accounts;
     private Double money;
     @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @CreatedDate
     @Column(name = "createTime", updatable = false, nullable = false)
     private Date createTime;
     private Integer state;
-
 
     public Integer getId() {
         return id;
@@ -40,20 +38,12 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getAccounts() {
+        return accounts;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
+    public void setAccounts(String accounts) {
+        this.accounts = accounts;
     }
 
     public Double getMoney() {
@@ -80,13 +70,11 @@ public class Account implements Serializable {
         this.state = state;
     }
 
-
     @Override
     public String toString() {
         return "Account{" +
                 "id=" + id +
-                ", userId=" + userId +
-                ", account='" + account + '\'' +
+                ", accounts='" + accounts + '\'' +
                 ", money=" + money +
                 ", createTime=" + createTime +
                 ", state=" + state +

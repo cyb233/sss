@@ -60,7 +60,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
         //按用户名查询UserDetails
         jdbcDao.setUsersByUsernameQuery("select loginCode,password,del from s_user where loginCode = ?");
         //查询所有权限
-        jdbcDao.setAuthoritiesByUsernameQuery("select loginCode,roleName from s_user where loginCode = ?");
+        jdbcDao.setAuthoritiesByUsernameQuery("select u.loginCode,r.roleName from s_user u left join s_role r on u.roleId=r.id where loginCode = ?");
         //查询权限的开关
         jdbcDao.setEnableAuthorities(true);
 
@@ -88,6 +88,8 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
                     form
                             //.loginPage("/order/list")
                             .loginProcessingUrl("/user/login")
+                            .usernameParameter("loginCode")
+                            .passwordParameter("password")
                             //认证成功后，向前端响应json数据
                             .successHandler((req, resp, auth) -> {
                                 Result result = new Result();
