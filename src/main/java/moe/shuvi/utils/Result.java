@@ -18,6 +18,8 @@ public class Result {
     public final static String MSG_403 = "Permission denied";
     public static final Integer CODE_LOGIN_NEEDED = 30003;
     public final static String MSG_LOGIN_NEEDED = "please login !!";
+    public final static Integer ORDER_PICK = 1;
+    public final static Integer ORDER_BUY = 2;
 
 
     private Integer code;

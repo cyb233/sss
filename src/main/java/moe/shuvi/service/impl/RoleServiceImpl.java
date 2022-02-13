@@ -44,7 +44,7 @@ public class RoleServiceImpl implements RoleService {
                 .withIgnoreNullValues();
         Example<Role> example = Example.of(role, matcher);
         List<Role> all = roleDao.findAll(example);
-        if (all != null) {
+        if (all.get(1) != null) {
             result.setData(all);
             result.setMsg(Result.MSG_SUCCESS);
             result.setCode(Result.CODE_SUCCESS);

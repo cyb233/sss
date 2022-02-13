@@ -86,7 +86,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 
                     //前端登录时，向该/login提交表单
                     form
-                            //.loginPage("/order/list")
+                            //.loginPage("/")
                             .loginProcessingUrl("/user/login")
                             .usernameParameter("loginCode")
                             .passwordParameter("password")

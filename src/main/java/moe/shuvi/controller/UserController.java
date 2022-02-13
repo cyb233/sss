@@ -10,7 +10,7 @@ import moe.shuvi.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@Api(value = "UserController", description = "用户登录登出汇总", tags = "UserController")
+@Api(value = "UserController",description = "用户登录登出汇总",tags = "UserController")
 @RestController
 @RequestMapping("/user")
 //跨域允许
@@ -19,55 +19,51 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "loginCode", value = "用户名", required = true, dataType = "string"),
-            @ApiImplicitParam(name = "password", value = "密码", required = true, dataType = "string")
+            @ApiImplicitParam(name = "username", value = "用户名", required = true ,dataType = "string"),
+            @ApiImplicitParam(name = "passwd", value = "密码", required = true ,dataType = "string")
     })
-    @LogAnnotation(title = "用户模块", action = "用户登录")
+    @LogAnnotation(title = "用户模块",action = "用户登录")
     @RequestMapping("/login")
-    public Result toLogin(@RequestBody User user) throws Exception {
-        Result result = new Result();
+    public Result toLogin(@RequestBody User user)throws Exception{
+        System.out.println(user);
+        Result result  = new Result();
         User byLogin = userService.findByLogin(user);
         if (byLogin != null) {
             result.setData(byLogin);
             result.setCode(Result.CODE_SUCCESS);
             result.setMsg(Result.MSG_SUCCESS);
-        } else {
+        }else {
             result.setMsg(Result.MSG_ERROR);
             result.setCode(Result.CODE_ERROR);
         }
         return result;
     }
-
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNow", value = "当前页", required = true, dataType = "int"),
-            @ApiImplicitParam(name = "pageSize", value = "当页容量", required = true, dataType = "int")
+            @ApiImplicitParam(name = "pageNow", value = "当前页", required = true ,dataType = "int"),
+            @ApiImplicitParam(name = "pageSize", value = "当页容量", required = true ,dataType = "int")
     })
-    @LogAnnotation(title = "用户模块", action = "用户查询")
+    @LogAnnotation(title = "用户模块",action = "用户查询")
     @RequestMapping("/page")
-    public Result findAll(@RequestBody User user) throws Exception {
-        Result byPage = userService.findByPage(user, user.getPageNow(), user.getPageSize());
+    public Result findAll(@RequestBody User user,int pageNow,@RequestParam int pageSize) throws Exception{
+        Result byPage = userService.findByPage(user, pageNow, pageSize);
         return byPage;
     }
-
-    @LogAnnotation(title = "用户模块", action = "用户注册")
+    @LogAnnotation(title = "用户模块",action = "用户注册")
     @RequestMapping("/register")
-    public Result register(@RequestBody User user) throws Exception {
+    public Result register(@RequestBody User user)throws Exception{
         Result result = userService.addOrUpdateUser(user);
         return result;
     }
-
-    @LogAnnotation(title = "用户模块", action = "用户删除")
+    @LogAnnotation(title = "用户模块",action = "用户删除")
     @RequestMapping("/remove")
-    public Result removeById(@RequestParam int id) throws Exception {
+    public Result removeById(@RequestParam int id)throws Exception{
         Result result = userService.removeUserBYId(id);
         return result;
     }
-
-    @LogAnnotation(title = "用户模块", action = "用户修改")
+    @LogAnnotation(title = "用户模块",action = "用户修改")
     @RequestMapping("/update")
-    public Result modify(@RequestBody User user) throws Exception {
+    public Result modify(@RequestBody User user)throws Exception{
         Result result = userService.addOrUpdateUser(user);
         return result;
     }
