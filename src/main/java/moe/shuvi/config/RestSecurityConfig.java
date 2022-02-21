@@ -96,7 +96,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
                                 result.setCode(Result.CODE_SUCCESS);
                                 result.setMsg(Result.MSG_SUCCESS);
                                 //签发token
-
+                                System.out.println("签发token");
                                 SecurityContext context = SecurityContextHolder.getContext();
                                 Authentication authentication = context.getAuthentication();
                                 String username = authentication.getName();

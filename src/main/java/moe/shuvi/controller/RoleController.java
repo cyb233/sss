@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "RoleController",description = "角色接口汇总",tags = "RoleController")
 @RequestMapping("/role")
 @RestController
-@CrossOrigin(origins = "https://web.shuvi.moe",allowCredentials = "true")
+@CrossOrigin(origins = {"http://localhost:9528/","https://web.shuvi.moe"}, allowCredentials = "true")
 public class RoleController {
     @Autowired
     private RoleService roleService;

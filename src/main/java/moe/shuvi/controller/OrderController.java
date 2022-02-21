@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "OrderController", description = "订单接口汇总", tags = "OrderController")
 @RestController
 @RequestMapping("/order")
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:9528/","https://web.shuvi.moe"}, allowCredentials = "true")
 public class OrderController {
     @Autowired
     private OrderService orderService;

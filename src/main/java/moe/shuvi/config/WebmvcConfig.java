@@ -47,7 +47,7 @@ public class WebmvcConfig implements WebMvcConfigurer {
     private List<Parameter> getList(){
         ParameterBuilder builder = new ParameterBuilder();
 
-        builder.name(JwtConstant.ACCESS_TOKEN).description("token").modelRef(new ModelRef("string")).parameterType("header").required(false);
+        builder.name(JwtConstant.ACCESS_TOKEN).description("authorization").modelRef(new ModelRef("string")).parameterType("header").required(false);
         Parameter build = builder.build();
         List<Parameter> parameters = Arrays.asList(build);
         return parameters;

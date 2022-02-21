@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "AccountController", description = "账户接口汇总", tags = "AccountController")
 @RestController
 @RequestMapping("/account")
-@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:9528/","https://web.shuvi.moe"}, allowCredentials = "true")
 public class AccountController {
     @Autowired
     private AccountService accountService;

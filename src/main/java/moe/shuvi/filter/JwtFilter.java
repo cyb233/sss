@@ -73,13 +73,13 @@ public class JwtFilter extends BasicAuthenticationFilter {
         //解析token
         System.out.println(jwtTokenUtil);
         String username = jwtTokenUtil.getUserName(jwtToken);
-
+        System.out.println(username);
         //获取权限
         Claims claims = jwtTokenUtil.getClaimsFromToken(jwtToken);
         //Collection<Map> collection = (Collection) claims.get(JwtConstant.JWT_PERMISSIONS_KEY);
         Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) claims.get(JwtConstant.JWT_PERMISSIONS_KEY);
-        /*System.out.println(collection);
-        if (!collection.isEmpty()) {
+        System.out.println(authorities);
+        /*if (!collection.isEmpty()) {
             for (Map<String,String> map : collection) {
                 //权限字符串
                 String authority = map.get("authority");
